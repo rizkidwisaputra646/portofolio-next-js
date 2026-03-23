@@ -1,0 +1,31 @@
+---
+title: "AI-Powered Search Platform"
+description: "Distributed search infrastructure with RAG capabilities and vector embeddings."
+date: "2024-03-23"
+tech: ["OpenAI", "Elasticsearch", "Vercel", "React"]
+image: "/projects/ai-search.png"
+---
+
+## Overview
+This platform was designed to provide semantic search capabilities over millions of unstructured documents using Large Language Models (LLMs) and Vector Databases.
+
+## The Problem
+Keyword-based search was failing to provide relevant results for complex user queries. The system needed to understand intent and context.
+
+## Implementation: RAG Architecture
+We implemented a **Retrieval-Augmented Generation (RAG)** pipeline:
+1. **Embedding:** Documents are converted into vector embeddings using OpenAI's `text-embedding-3-small`.
+2. **Storage:** Vectors are stored in Elasticsearch with k-NN search enabled.
+3. **Retrieval:** User queries are embedded and compared against the document vectors.
+4. **Generation:** The most relevant chunks are passed to GPT-4 to synthesize a natural language response.
+
+## Technical Challenge: Latency
+To keep response times under 500ms, we implemented a sophisticated caching layer and optimized the vector search indices.
+
+## Results
+- **85% improvement** in search relevance scores.
+- Scaled to handle **10k queries/minute**.
+- Integrated into 5 internal enterprise tools.
+
+## Future Outlook
+Moving towards agentic workflows where the search engine can autonomously perform multi-step research tasks.

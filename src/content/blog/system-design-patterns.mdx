@@ -1,0 +1,33 @@
+---
+title: "Pragmatic System Design"
+description: "Choosing the right patterns without over-engineering your initial MVP."
+date: "2024-03-22"
+tags: ["Architecture", "System Design", "Scalability"]
+readingTime: "5 min read"
+---
+
+System design is often discussed in the context of FAANG-level scale, but for most developers, the challenge is building systems that are "just right" for their current stage.
+
+## The Pitfalls of Over-engineering
+It's tempting to reach for Microservices or Kafka on Day 1. However, this often leads to premature complexity.
+
+1. **Start Simple:** A well-structured monolith can take you very far.
+2. **Postpone Distributed Data:** Shared databases are okay until they aren't.
+3. **Focus on Observability:** It's more important to know *why* something failed than to prevent every failure.
+
+## Clean Architecture in React
+Even on the frontend, system design matters. Decoupling your business logic from your UI components is crucial for long-term maintainability.
+
+```typescript
+// Separating logic from view
+export const useProductLogic = (id: string) => {
+  const { data, isLoading } = useQuery(['product', id], fetchProduct);
+  
+  const formattedPrice = data ? formatCurrency(data.price) : '';
+  
+  return { product: data, formattedPrice, isLoading };
+};
+```
+
+## Conclusion
+Build for the scale you have, but keep the doors open for the scale you want.

@@ -1,0 +1,39 @@
+---
+title: "Real-time Analytics Engine"
+description: "Processing millions of events per second with low latency using Clickhouse and Kafka."
+date: "2024-03-22"
+tech: ["Python", "Clickhouse", "Kafka", "React"]
+image: "/projects/analytics.png"
+---
+
+## Overview
+This project focused on building a high-throughput analytics engine capable of ingesting and visualizing millions of events per second from various distributed sources.
+
+## The Problem
+The legacy system used a standard relational database which couldn't keep up with the write load, resulting in data loss and severe latency in real-time dashboards.
+
+## Architecture
+We implemented a modern data stack using **Apache Kafka** as the message bus and **ClickHouse** as the OLAP database for ultra-fast aggregations.
+
+### Key Pillars:
+- **Ingestion:** Python-based consumers optimized for batch-writing to ClickHouse.
+- **Storage:** ClickHouse with optimized merge-tree engines.
+- **Visualization:** A React dashboard using WebSockets for real-time updates.
+
+## Technical Highlight: Kafka Batching
+To maximize ClickHouse performance, we implemented a custom buffering strategy in Python:
+
+```python
+def process_batch(messages):
+    # Batch messages before inserting to Clickhouse
+    batch = transform_messages(messages)
+    clickhouse_client.execute('INSERT INTO events VALUES', batch)
+```
+
+## Results
+- **1.2M events/second** processed consistently.
+- **Sub-second latency** for complex analytical queries.
+- Scalable architecture that easy handles traffic spikes.
+
+## Lessons Learned
+Data consistency in distributed systems is hard. We learned to balance between "at-least-once" delivery and performance requirements of the ingestion pipeline.

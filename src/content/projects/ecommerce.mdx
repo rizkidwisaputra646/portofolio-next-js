@@ -1,0 +1,38 @@
+---
+title: "E-Commerce Architecture"
+description: "A high-performance microservices architecture for a scaling retail platform."
+date: "2024-03-20"
+tech: ["Next.js", "Go", "Kubernetes", "Redis"]
+image: "/projects/ecommerce.png"
+---
+
+## Overview
+This project involved re-architecting a legacy monolithic e-commerce platform into a modern microservices-based system to support a 5x increase in traffic.
+
+## The Problem
+The existing system suffered from long deployment cycles, frequent downtime during peak sales, and difficulty scaling specific components like the search engine and checkout process.
+
+## Architecture
+We chose a microservices approach using **Go** for performance-critical services and **Node.js** for the frontend-facing API gateway.
+
+### Key Components:
+- **Product Service:** Managed catalog and inventory with Redis caching.
+- **Order Service:** Handled transactions with strict ACID compliance.
+- **Search Service:** Powered by Elasticsearch for real-time filtering.
+
+## Implementation Details
+```go
+// Example of a highly optimized product search handler
+func SearchProducts(query string) ([]Product, error) {
+    // Implementation details...
+    return products, nil
+}
+```
+
+## Results
+- **99.99% Uptime** during Black Friday.
+- **40% reduction** in page load times.
+- Deployment frequency increased from bi-weekly to multiple times a day.
+
+## Lessons Learned
+Trade-offs are everywhere. Distributed systems bring complexity in observability and data consistency which we addressed using OpenTelemetry and event-sourcing patterns.
